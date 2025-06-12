@@ -4,7 +4,14 @@ import Link from "next/link";
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
-import { LogOut, User, Briefcase, FileText, Menu } from "lucide-react";
+import {
+	LogOut,
+	User,
+	Briefcase,
+	FileText,
+	Menu,
+	GraduationCap,
+} from "lucide-react";
 
 export default function Navbar() {
 	const { user, logout } = useAuth();
@@ -16,9 +23,9 @@ export default function Navbar() {
 				<div className="flex justify-between h-16 items-center">
 					<div className="flex items-center">
 						<Link href="/" className="flex items-center space-x-2">
-							<Briefcase className="h-8 w-8 text-blue-600" />
-							<span className="text-xl font-bold text-gray-900">
-								JobPortal
+							<GraduationCap className="h-8 w-8 text-blue-600" />
+							<span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+								Campus Jobs
 							</span>
 						</Link>
 					</div>
@@ -57,7 +64,7 @@ export default function Navbar() {
 										<Link href="/jobs">
 											<Button variant="outline" size="sm">
 												<Briefcase className="h-4 w-4 mr-2" />
-												Jobs
+												All Jobs
 											</Button>
 										</Link>
 										<Link href="/applications">

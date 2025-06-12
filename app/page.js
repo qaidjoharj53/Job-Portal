@@ -90,12 +90,14 @@ export default function HomePage() {
 
 	if (!user) {
 		return (
-			<div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100">
+			<div className="min-h-screen bg-gradient-to-br from-blue-200 via-indigo-100 to-purple-50">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 					<div className="text-center">
 						<h1 className="text-4xl font-bold text-gray-900 sm:text-5xl md:text-6xl">
 							Welcome to{" "}
-							<span className="text-blue-600">JobPortal</span>
+							<span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+								Campus Jobs
+							</span>
 						</h1>
 						<p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
 							Connect colleges with students through our
@@ -168,7 +170,7 @@ export default function HomePage() {
 	}
 
 	return (
-		<div className="min-h-screen bg-gray-50">
+		<div className="min-h-screen bg-gradient-to-br from-blue-100 via-green-50 to-blue-100">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 				<div className="mb-8">
 					<h1 className="text-3xl font-bold text-gray-900">
@@ -186,37 +188,43 @@ export default function HomePage() {
 						<>
 							<Link href="/admin">
 								<Card className="hover:shadow-lg transition-shadow cursor-pointer">
-									<CardHeader>
-										<Briefcase className="h-8 w-8 text-blue-600" />
-										<CardTitle>Manage Jobs</CardTitle>
-										<CardDescription>
-											Post new job opportunities and view
-											existing listings.
-										</CardDescription>
+									<CardHeader className="flex flex-row items-center">
+										<Briefcase className="h-12 w-12 text-blue-600 mr-6" />
+										<div className="flex flex-col mt-2">
+											<CardTitle>Manage Jobs</CardTitle>
+											<CardDescription className="text-sm text-gray-600 mt-2">
+												Post new job opportunities and
+												view existing listings.
+											</CardDescription>
+										</div>
 									</CardHeader>
 								</Card>
 							</Link>
 
-							<Card>
+							<Card className="hover:shadow-lg transition-shadow cursor-pointer">
 								<CardHeader>
-									<Briefcase className="h-8 w-8 text-blue-600" />
 									<CardTitle>Total Jobs Posted</CardTitle>
-									<CardDescription>
-										<span className="text-2xl font-bold text-gray-900">
-											{totalJobs}
-										</span>
-									</CardDescription>
+									<div className="flex items-center pt-1">
+										<Building className="h-8 w-8 text-green-600 mr-4" />
+										<CardDescription>
+											<span className="text-2xl font-bold text-gray-900">
+												{totalJobs}
+											</span>
+										</CardDescription>
+									</div>
 								</CardHeader>
 							</Card>
-							<Card>
+							<Card className="hover:shadow-lg transition-shadow cursor-pointer">
 								<CardHeader>
-									<FileText className="h-8 w-8 text-green-600" />
 									<CardTitle>Total Applications</CardTitle>
-									<CardDescription>
-										<span className="text-2xl font-bold text-gray-900">
-											{totalApplications}
-										</span>
-									</CardDescription>
+									<div className="flex items-center pt-1">
+										<FileText className="h-8 w-8 text-blue-600 mr-4" />
+										<CardDescription>
+											<span className="text-2xl font-bold text-gray-900">
+												{totalApplications}
+											</span>
+										</CardDescription>
+									</div>
 								</CardHeader>
 							</Card>
 						</>

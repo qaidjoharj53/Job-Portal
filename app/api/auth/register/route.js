@@ -14,7 +14,7 @@ export async function GET() {
 
 export async function POST(request) {
   try {
-    const { email, password, name, role, collegeId, collegeName, collegeEmail, collegeLocation } = await request.json()
+    const { email, password, name, role, collegeId, collegeName, collegeLocation } = await request.json()
 
     // Validate required fields
     if (!email || !password || !name || !role) {
@@ -29,7 +29,7 @@ export async function POST(request) {
     // If admin is registering and creating a new college
     if (role === "admin" && !collegeId && collegeName) {
       try {
-        const result = await createCollege(collegeName, collegeEmail, collegeLocation)
+        const result = await createCollege(collegeName, collegeLocation)
         finalCollegeId = result.insertId
       } catch (error) {
         if (error.code === "ER_DUP_ENTRY") {

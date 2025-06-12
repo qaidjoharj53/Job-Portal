@@ -37,12 +37,23 @@ export async function POST(request) {
 			title,
 			description,
 			location,
+			companyName,
+			type,
 			deadline,
 			salaryRange,
 			requirements,
 		} = await request.json();
 
-		if (!title || !description || !location || !deadline) {
+		if (
+			!title ||
+			!description ||
+			!location ||
+			!deadline ||
+			!salaryRange ||
+			!requirements ||
+			!companyName ||
+			!type
+		) {
 			return NextResponse.json(
 				{ error: "Missing required fields" },
 				{ status: 400 }
@@ -53,6 +64,8 @@ export async function POST(request) {
 			title,
 			description,
 			location,
+			companyName,
+			type,
 			deadline,
 			salaryRange,
 			requirements,

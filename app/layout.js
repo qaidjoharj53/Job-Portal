@@ -7,10 +7,11 @@ import { Toaster } from "react-hot-toast";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-	title: "JobPortal - Connect Colleges with Students",
+	title: "Campus Jobs Portal",
 	description:
 		"A comprehensive job portal connecting colleges with students for internships and job opportunities.",
-	generator: "v0.dev",
+	keywords:
+		"job portal, internships, job opportunities, college students, career development",
 };
 
 export default function RootLayout({ children }) {

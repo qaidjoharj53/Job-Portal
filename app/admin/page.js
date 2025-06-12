@@ -13,7 +13,6 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Plus, Briefcase, MapPin, Calendar, IndianRupee } from "lucide-react";
 import { toast } from "react-hot-toast";
 
@@ -25,13 +24,13 @@ export default function AdminPage() {
 	const [message, setMessage] = useState("");
 	const [formData, setFormData] = useState({
 		title: "",
-		company_name: "",
 		description: "",
 		location: "",
+		companyName: "",
+		type: "",
 		deadline: "",
 		salaryRange: "",
 		requirements: "",
-		type: "", // <-- Add type field
 	});
 
 	useEffect(() => {
@@ -82,13 +81,13 @@ export default function AdminPage() {
 				setMessage("Job posted successfully!");
 				setFormData({
 					title: "",
-					company_name: "",
 					description: "",
 					location: "",
+					companyName: "",
+					type: "",
 					deadline: "",
 					salaryRange: "",
 					requirements: "",
-					type: "", // <-- Add this line
 				});
 				setShowForm(false);
 				fetchJobs();
@@ -121,7 +120,7 @@ export default function AdminPage() {
 	}
 
 	return (
-		<div className="min-h-screen bg-gray-50">
+		<div className="min-h-screen bg-blue-50">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 				<div className="flex justify-between items-center mb-8">
 					<div>
@@ -137,12 +136,6 @@ export default function AdminPage() {
 						Post New Job
 					</Button>
 				</div>
-
-				{message && (
-					<Alert className="mb-6">
-						<AlertDescription>{message}</AlertDescription>
-					</Alert>
-				)}
 
 				{showForm && (
 					<Card className="mb-8">
@@ -172,17 +165,16 @@ export default function AdminPage() {
 									</div>
 
 									<div className="space-y-2">
-										<Label htmlFor="company_name">
+										<Label htmlFor="companyName">
 											Company Name
 										</Label>
 										<Input
-											id="company_name"
-											value={formData.company_name}
+											id="companyName"
+											value={formData.companyName}
 											onChange={(e) =>
 												setFormData({
 													...formData,
-													company_name:
-														e.target.value,
+													companyName: e.target.value,
 												})
 											}
 											required

@@ -19,6 +19,7 @@ import {
 	Briefcase,
 	CheckCircle,
 	ChevronDown,
+	IndianRupee,
 } from "lucide-react";
 import { toast } from "react-hot-toast";
 
@@ -273,14 +274,17 @@ export default function JobsPage() {
 							<Card
 								key={job.id}
 								className="hover:shadow-lg transition-shadow">
-								<CardHeader>
+								<CardHeader className="pb-4">
 									<div className="flex justify-between items-start">
 										<div className="flex-1">
-											<CardTitle className="text-xl mb-2">
+											<CardTitle className="text-xl">
 												{job.title}
 											</CardTitle>
+											<div className="font-bold text-blue-700 text-lg mb-1">
+												{job.company_name}
+											</div>
 											<CardDescription>
-												Posted by {job.company_name} •{" "}
+												Posted on:{" "}
 												{formatDate(job.created_at)}
 											</CardDescription>
 										</div>
@@ -307,22 +311,18 @@ export default function JobsPage() {
 									</div>
 								</CardHeader>
 								<CardContent>
-									<p className="text-gray-600 mb-6">
-										{job.description}
-									</p>
-
-									<div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+									<div className="flex flex-col md:flex-row md:gap-32 mb-6">
 										<div className="flex items-center text-gray-500">
 											<MapPin className="h-4 w-4 mr-2 flex-shrink-0" />
-											<span className="text-sm">
+											<span className="text-base">
 												{job.location}
 											</span>
 										</div>
 
 										{job.salary_range && (
 											<div className="flex items-center text-gray-500">
-												<DollarSign className="h-4 w-4 mr-2 flex-shrink-0" />
-												<span className="text-sm">
+												<IndianRupee className="h-4 w-4 mr-2 flex-shrink-0" />
+												<span className="text-base">
 													{job.salary_range}
 												</span>
 											</div>
@@ -330,21 +330,36 @@ export default function JobsPage() {
 
 										<div className="flex items-center text-gray-500">
 											<Calendar className="h-4 w-4 mr-2 flex-shrink-0" />
-											<span className="text-sm">
+											<span className="text-base">
 												Deadline:{" "}
 												{formatDate(job.deadline)}
 											</span>
 										</div>
 									</div>
 
+									<h4 className="font-medium text-gray-900 mb-2">
+										Job Description:
+									</h4>
+									<p className="text-gray-600 mb-6 whitespace-pre-line">
+										{job.description}
+									</p>
+
 									{job.requirements && (
 										<div className="mb-6">
 											<h4 className="font-medium text-gray-900 mb-2">
 												Requirements:
 											</h4>
-											<p className="text-gray-600 text-sm">
-												{job.requirements}
-											</p>
+											<ul className="text-gray-600 list-disc pl-5">
+												{job.requirements
+													.split(/\r?\n/)
+													.filter(
+														(line) =>
+															line.trim() !== ""
+													)
+													.map((line, idx) => (
+														<li key={idx}>{line}</li>
+													))}
+											</ul>
 										</div>
 									)}
 
@@ -357,11 +372,19 @@ export default function JobsPage() {
 												new Date(job.deadline) <=
 													new Date()
 											}
-											className="min-w-[120px]">
+											className={`min-w-[120px] 
+												${
+													!job.hasApplied &&
+													new Date(job.deadline) >
+														new Date()
+														? "bg-gray-800 text-white border-0 hover:bg-black"
+														: ""
+												}
+											`}>
 											{applying[job.id]
 												? "Applying..."
 												: job.hasApplied
-												? "Applied"
+												? "Applied ✓"
 												: new Date(job.deadline) <=
 												  new Date()
 												? "Expired"
