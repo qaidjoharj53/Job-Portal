@@ -12,6 +12,9 @@ export const metadata = {
 		"A comprehensive job portal connecting colleges with students for internships and job opportunities.",
 	keywords:
 		"job portal, internships, job opportunities, college students, career development",
+	icons: {
+		icon: "/favicon.ico",
+	},
 };
 
 export default function RootLayout({ children }) {

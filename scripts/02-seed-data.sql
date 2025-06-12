@@ -1,9 +1,9 @@
 -- Insert sample data
 
 -- Insert sample colleges
-INSERT INTO colleges (name, email, location) VALUES
-('Tech University', 'admin@techuni.edu', 'San Francisco, CA'),
-('Business College', 'admin@bizcollege.edu', 'New York, NY'),
+INSERT INTO colleges (name, location) VALUES
+('Rajasthan Technical University', 'admin@techuni.edu', 'San Francisco, CA'),
+('BITS Pilani', 'admin@bizcollege.edu', 'New York, NY'),
 ('Engineering Institute', 'admin@enginst.edu', 'Austin, TX');
 
 -- Insert sample admin users (password is 'admin123' hashed)
