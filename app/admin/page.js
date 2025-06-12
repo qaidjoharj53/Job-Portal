@@ -15,6 +15,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Plus, Briefcase, MapPin, Calendar, IndianRupee } from "lucide-react";
 import { toast } from "react-hot-toast";
+import Link from "next/link";
 
 export default function AdminPage() {
 	const { user, getAuthHeaders } = useAuth();
@@ -395,6 +396,21 @@ export default function AdminPage() {
 										<p className="text-gray-600 mt-4">
 											{job.description}
 										</p>
+										<div className="mt-4 flex justify-end">
+											<Link
+												href={{
+													pathname: `/admin/jobs/${job.id}/applications`,
+													query: {
+														jobTitle: job.title,
+														companyName: job.company_name,
+													},
+												}}
+											>
+												<Button size="sm">
+													View Applications
+												</Button>
+											</Link>
+										</div>
 									</CardContent>
 								</Card>
 							))}

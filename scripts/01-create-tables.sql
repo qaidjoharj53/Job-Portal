@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS jobs (
 );
 
 -- Job applications table
-CREATE TABLE IF NOT EXISTS job_applications (
+CREATE TABLE IF NOT EXISTS applications (
     id INT PRIMARY KEY AUTO_INCREMENT,
     job_id INT NOT NULL,
     student_id INT NOT NULL,

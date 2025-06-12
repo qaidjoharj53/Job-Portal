@@ -10,12 +10,10 @@ import {
 	CardHeader,
 	CardTitle,
 } from "@/components/ui/card";
-import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Badge } from "@/components/ui/badge";
 import {
 	MapPin,
 	Calendar,
-	DollarSign,
 	Briefcase,
 	CheckCircle,
 	ChevronDown,
@@ -186,7 +184,7 @@ export default function JobsPage() {
 	}
 
 	return (
-		<div className="min-h-screen bg-gray-50">
+		<div className="min-h-screen bg-indigo-50">
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
 				<div className="mb-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
 					<div>
@@ -248,12 +246,6 @@ export default function JobsPage() {
 						</div>
 					</div>
 				</div>
-
-				{message && (
-					<Alert className="mb-6">
-						<AlertDescription>{message}</AlertDescription>
-					</Alert>
-				)}
 
 				{getFilteredJobs().length === 0 ? (
 					<Card>
@@ -357,7 +349,9 @@ export default function JobsPage() {
 															line.trim() !== ""
 													)
 													.map((line, idx) => (
-														<li key={idx}>{line}</li>
+														<li key={idx}>
+															{line}
+														</li>
 													))}
 											</ul>
 										</div>

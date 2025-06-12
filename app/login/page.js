@@ -56,12 +56,6 @@ export default function LoginPage() {
 				</CardHeader>
 				<CardContent>
 					<form onSubmit={handleSubmit} className="space-y-4">
-						{error && (
-							<Alert variant="destructive">
-								<AlertDescription>{error}</AlertDescription>
-							</Alert>
-						)}
-
 						<div className="space-y-2">
 							<Label htmlFor="email">Email</Label>
 							<Input
@@ -105,6 +99,14 @@ export default function LoginPage() {
 								</button>
 							</div>
 						</div>
+
+						{error && (
+							<Alert
+								variant="destructive"
+								className="border-0 text-center">
+								<AlertDescription>{error}</AlertDescription>
+							</Alert>
+						)}
 
 						<Button
 							type="submit"
