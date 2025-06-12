@@ -64,6 +64,36 @@ export default function RegisterPage() {
 		setLoading(true);
 		setError("");
 
+		// Prevent admin registration with .com email
+		if (formData.role === "admin") {
+			if (formData.email.endsWith(".com")) {
+				setError(
+					"College admin account cannot be created with a .com email."
+				);
+				setLoading(false);
+				return;
+			}
+			// Check if another admin exists with same domain
+			const emailDomain = formData.email.split("@")[1];
+			try {
+				const res = await fetch("/api/auth/check-admin-domain", {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ emailDomain }),
+				});
+				const data = await res.json();
+				if (data.exists) {
+					setError("Your college already exists.");
+					setLoading(false);
+					return;
+				}
+			} catch (err) {
+				setError("Error checking college domain. Please try again.");
+				setLoading(false);
+				return;
+			}
+		}
+
 		if (formData.password !== formData.confirmPassword) {
 			setError("Passwords do not match.");
 			setLoading(false);
@@ -98,17 +128,11 @@ export default function RegisterPage() {
 						Create Account
 					</CardTitle>
 					<CardDescription className="text-center">
-						Sign up to access the job portal
+						Sign up to access jobs at your cam
 					</CardDescription>
 				</CardHeader>
 				<CardContent>
 					<form onSubmit={handleSubmit} className="space-y-4">
-						{error && (
-							<Alert variant="destructive">
-								<AlertDescription>{error}</AlertDescription>
-							</Alert>
-						)}
-
 						<div className="space-y-2">
 							<Label htmlFor="name">Full Name</Label>
 							<Input
@@ -301,6 +325,14 @@ export default function RegisterPage() {
 									/>
 								</div>
 							</>
+						)}
+
+						{error && (
+							<Alert
+								variant="destructive"
+								className="border-0 text-center">
+								<AlertDescription>{error}</AlertDescription>
+							</Alert>
 						)}
 
 						<Button
