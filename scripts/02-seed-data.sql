@@ -2,20 +2,17 @@
 
 -- Insert sample colleges
 INSERT INTO colleges (name, location) VALUES
-('Rajasthan Technical University', 'admin@techuni.edu', 'San Francisco, CA'),
-('BITS Pilani', 'admin@bizcollege.edu', 'New York, NY'),
-('Engineering Institute', 'admin@enginst.edu', 'Austin, TX');
+('Rajasthan Technical University', 'Kota, Rajasthan'),
+('BITS Pilani', 'Pilani, Rajasthan'),
+('IIT Madras', 'Chennai, Tamil Nadu'),
+('University of California, Berkeley', 'Berkeley, CA'),
+('Massachusetts Institute of Technology', 'Cambridge, MA'),
+('Stanford University', 'Stanford, CA');
 
--- Insert sample admin users (password is 'admin123' hashed)
+-- Insert sample users
 INSERT INTO users (email, password, name, role, college_id) VALUES
-('admin@techuni.edu', '$2b$10$rOzJqQZQXQXQXQXQXQXQXeJ1J1J1J1J1J1J1J1J1J1J1J1J1J1J1J1', 'Tech Admin', 'admin', 1),
-('admin@bizcollege.edu', '$2b$10$rOzJqQZQXQXQXQXQXQXQXeJ1J1J1J1J1J1J1J1J1J1J1J1J1J1J1J1', 'Business Admin', 'admin', 2);
-
--- Insert sample student users (password is 'student123' hashed)
-INSERT INTO users (email, password, name, role, college_id) VALUES
-('john@student.com', '$2b$10$rOzJqQZQXQXQXQXQXQXQXeJ1J1J1J1J1J1J1J1J1J1J1J1J1J1J1J1', 'John Doe', 'student', 1),
-('jane@student.com', '$2b$10$rOzJqQZQXQXQXQXQXQXQXeJ1J1J1J1J1J1J1J1J1J1J1J1J1J1J1J1', 'Jane Smith', 'student', 1),
-('bob@student.com', '$2b$10$rOzJqQZQXQXQXQXQXQXQXeJ1J1J1J1J1J1J1J1J1J1J1J1J1J1J1J1', 'Bob Johnson', 'student', 2);
+('jayesh@rtu.edu', '#password', 'Jayesh', 'admin', 1);
+('vaibhav@gmail.com', '#password', 'Vaibhav', 'student', 1),
 
 -- Insert sample jobs
 INSERT INTO jobs (title, description, location, company_name, type, deadline, salary_range, requirements, college_id, posted_by) VALUES
